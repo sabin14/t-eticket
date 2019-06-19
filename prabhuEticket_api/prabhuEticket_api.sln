@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prabhuEticket_api", "prabhuEticket_api\prabhuEticket_api.csproj", "{2C16887C-448C-4919-8663-2C502A5BA6BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prabhuEticket_api.Tests", "prabhuEticket_api.Tests\prabhuEticket_api.Tests.csproj", "{190193DD-0519-4521-B0D7-2131EAE8DB36}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C16887C-448C-4919-8663-2C502A5BA6BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C16887C-448C-4919-8663-2C502A5BA6BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C16887C-448C-4919-8663-2C502A5BA6BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C16887C-448C-4919-8663-2C502A5BA6BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{190193DD-0519-4521-B0D7-2131EAE8DB36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{190193DD-0519-4521-B0D7-2131EAE8DB36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{190193DD-0519-4521-B0D7-2131EAE8DB36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{190193DD-0519-4521-B0D7-2131EAE8DB36}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5F36818B-52B4-4109-BB6B-9015FF8EB5C9}
+	EndGlobalSection
+EndGlobal
