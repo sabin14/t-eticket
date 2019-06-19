@@ -33,5 +33,10 @@ namespace prabhuEticket.Controllers
             }
             return Json(request);
         }
+
+        public ActionResult CreateCustomer()
+        {
+            return View();
+        }
     }
 }

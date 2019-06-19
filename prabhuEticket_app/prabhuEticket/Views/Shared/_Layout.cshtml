@@ -152,12 +152,62 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Customers:</h6>
                         <a class="collapse-item" href="@Url.Action("Index","Customer")"><i class="fas fa-bars"></i> &nbsp;View Customer</a>
-                        <a class="collapse-item" href="utilities-border.html"><i class="fa fa-plus"></i> &nbsp;Customer Create</a>
+                        <a class="collapse-item" href="@Url.Action("CreateCustomer","Customer")"><i class="fa fa-plus"></i> &nbsp;Customer Create</a>
                     </div>
                 </div>
             </li>
-
-            <!-- Divider -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities1" aria-expanded="true" aria-controls="collapseUtilities1">
+                    <i class="fas fa-fw fa-money-check"></i>
+                    <span>Transaction</span>
+                </a>
+                <div id="collapseUtilities1" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Transaction:</h6>
+                        <a class="collapse-item" href="#"><i class="fas fa-bars"></i> &nbsp;All Transaction</a>
+                        <a class="collapse-item" href="#"><i class="fa fa-bars"></i> &nbsp;User Transaction</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2" aria-expanded="true" aria-controls="collapseUtilities2">
+                    <i class="fas fa-fw fa-bus"></i>
+                    <span>Vehicle</span>
+                </a>
+                <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Vehicle:</h6>
+                        <a class="collapse-item" href="#"><i class="fas fa-bars"></i> &nbsp;Vehicle List</a>
+                        <a class="collapse-item" href="#"><i class="fa fa-plus"></i> &nbsp;Add Vehicle</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3" aria-expanded="true" aria-controls="collapseUtilities3">
+                    <i class="fas fa-fw fa-route"></i>
+                    <span>Route</span>
+                </a>
+                <div id="collapseUtilities3" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Routes:</h6>
+                        <a class="collapse-item" href="#"><i class="fas fa-bars"></i> &nbsp;Route List</a>
+                        <a class="collapse-item" href="#"><i class="fa fa-plus"></i> &nbsp;Route Create</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#">
+                    <i class="fas fa-fw fa-id-card"></i>
+                    <span>Cards</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#">
+                    <i class="fas fa-fw fa-address-book"></i>
+                    <span>Reports</span>
+                </a>
+            </li>
+            @*<!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
@@ -199,7 +249,7 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span>
                 </a>
-            </li>
+            </li>*@
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
