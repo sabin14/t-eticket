@@ -2,13 +2,14 @@
 
 namespace prabhuEticket_api.Models
 {
-    public class authenticate_output
+    public class authenticate_output: returnMain
     {
         public class Data
         {
             public string message { get; set; }
             public string token { get; set; }
             public string role { get; set; }
+            public string path { get; set; }
             public UserInfo userInfo { get; set; }
             public class UserInfo
             {
@@ -17,6 +18,7 @@ namespace prabhuEticket_api.Models
                     public string vehicle_minimum_fare_amount { get; set; }
                     public string vehicle_student_discount_rate { get; set; }
                     public string vehicle_oldage_discount_rate { get; set; }
+                    public string handicapped_discoun_rate { get; set; }
                 }
 
                 public string name { get; set; }
