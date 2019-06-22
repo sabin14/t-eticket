@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "CreateCompany";
+    Layout = "~/Views/Shared/_CompanyLayout.cshtml";
+}
+
+<h2>Create Company</h2>
+
+<form>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Name">
+            </div>
+            <div class="col-md-4">
+                <label for="country">Country</label>
+                <input type="text" class="form-control" id="country" placeholder="Country">
+            </div>
+            <div class="col-md-4">
+                <label for="state">State</label>
+                <input type="text" class="form-control" id="state" placeholder="State">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="city">City</label>
+                <input type="text" class="form-control" id="city" placeholder="City">
+            </div>
+            <div class="col-md-4">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="address" placeholder="Address">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <div class="row">
+            <div class="col-md-8">
+                <input type="email" class="form-control" id="email" placeholder="Email">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" id="phone" placeholder="Phone no.">
+            </div>
+            <div class="col-md-4">
+                <label for="country">Website</label>
+                <input type="url" class="form-control" id="website" placeholder="Website">
+            </div>
+            <div class="col-md-4">
+                <label for="state">Company Code</label>
+                <input type="text" class="form-control" id="code" placeholder="Code">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleFormControlFile1">Upload Profile Image</label>
+        <div class="col-md-4">
+            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+    </div>
+    <hr />
+    <p class="font-weight-bold">Login Credentials</p>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="uname">UserName</label>
+                <input type="text" class="form-control" id="uname" placeholder="User Name">
+            </div>
+            <div class="col-md-4">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <div class="col-md-4">
+                <label for="repassword">Confirm Password</label>
+                <input type="password" class="form-control" id="repassword" placeholder="Re-password">
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
