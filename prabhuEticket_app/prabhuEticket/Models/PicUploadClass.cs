@@ -11,7 +11,7 @@ namespace prabhuEticket.Models
     public class PicUploadClass
     {
     }
-    public class photo_edit_output
+    public class photo_edit_output:returnMain
     {
         public string status { get; set; }
         public string message { get; set; }

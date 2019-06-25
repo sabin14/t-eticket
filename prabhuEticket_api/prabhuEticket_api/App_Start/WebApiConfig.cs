@@ -24,7 +24,7 @@ namespace prabhuEticket_api
             //);
             config.Routes.MapHttpRoute(
             name: "Swagger UI",
-            routeTemplate: "",
+            routeTemplate: "api/docs",
             defaults: null,
             constraints: null,
             handler: new RedirectHandler(SwaggerDocsConfig.DefaultRootUrlResolver, "api/docs/index"));

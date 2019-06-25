@@ -9,9 +9,9 @@ namespace prabhuEticket.Models
     {
         public string cardNumber { get; set; }
     }
-    
 
-    public class fullRefund_output
+
+    public class fullRefund_output : returnMain
     {
         public bool status { get; set; }
         public int status_code { get; set; }

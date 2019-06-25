@@ -46,6 +46,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -103,6 +106,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -136,13 +142,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppCode\CheckAPIKey.cs" />
+    <Compile Include="AppCode\EnableSwaggerAuthentication.cs" />
+    <Compile Include="AppCode\GetIPAddress.cs" />
+    <Compile Include="AppCode\globFunction.cs" />
     <Compile Include="AppCode\httpConnect.cs" />
     <Compile Include="AppCode\JsonObject.cs" />
     <Compile Include="AppCode\SessionCheckAttribute.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AuthenticateController.cs" />
+    <Compile Include="Controllers\CardsController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -150,7 +164,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminClass.cs" />
+    <Compile Include="Models\AllClasses.cs" />
     <Compile Include="Models\AuthenticationClass.cs" />
+    <Compile Include="Models\CardsClass.cs" />
+    <Compile Include="Models\CompanyClass.cs" />
     <Compile Include="Models\CustomerProfileClass.cs" />
     <Compile Include="Models\PicUploadClass.cs" />
     <Compile Include="Models\RefundClass.cs" />
@@ -160,7 +178,10 @@
     <Compile Include="Models\TransactionClass.cs" />
     <Compile Include="Models\TransactionReportClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AdminRepo.cs" />
     <Compile Include="Repository\AuthenticationRepo.cs" />
+    <Compile Include="Repository\CardsRepo.cs" />
+    <Compile Include="Repository\CompanyRepo.cs" />
     <Compile Include="Repository\CustomerRepo.cs" />
     <Compile Include="Repository\iGetRepo.cs" />
     <Compile Include="Repository\ReportRepo.cs" />

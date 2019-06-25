@@ -5,7 +5,7 @@ using System.Web;
 
 namespace prabhuEticket.Models
 {
-    public class routes_output
+    public class routes_output : returnMain
     {
         public bool status { get; set; }
         public int status_code { get; set; }

@@ -14,7 +14,7 @@ namespace prabhuEticket.Models
         public float amount { get; set; }
         public string cardNumber { get; set; }
     }
-    public class transaction_output
+    public class transaction_output: returnMain
     {
         public bool status { get; set; }
         public int status_code { get; set; }

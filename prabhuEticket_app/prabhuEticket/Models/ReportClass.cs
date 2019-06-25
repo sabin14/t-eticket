@@ -10,7 +10,7 @@ namespace prabhuEticket.Models
         public int fromDate { get; set; }
         public int toDate { get; set; }
     }
-    public class report_output
+    public class report_output : returnMain
     {
         public bool status { get; set; }
         public int status_code { get; set; }
