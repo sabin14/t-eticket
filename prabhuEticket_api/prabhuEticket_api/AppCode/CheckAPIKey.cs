@@ -16,6 +16,8 @@ using System.Data;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Web.Script.Serialization;
+using System.Diagnostics;
+
 namespace prabhuEticket_api.AppCode
 {
     public class CheckAPIKey
@@ -64,7 +66,7 @@ namespace prabhuEticket_api.AppCode
                         var ipAdd = IPAddress.Parse(ipAddr);
                         string location = globFunction.GetUserCountryByIp(ipAdd.ToString());
                         DataTable dt = func.RunSQL("spa_login @flag='c',@access_token=" + func.singleQuote(access_token) + ",@api_key=" + func.singleQuote(api_key) +
-                            ",@location_trace=" + location + ",@ip_address=" + ipAdd.ToString());
+                            ",@location_trace=" + func.singleQuote(location) + ",@ip_address=" + func.singleQuote(ipAdd.ToString()));
                         allObj.status = true;
                         allObj.data = new authenticate_output.Data();
                         allObj.data.userInfo = new authenticate_output.Data.UserInfo();
@@ -78,11 +80,11 @@ namespace prabhuEticket_api.AppCode
                 }
                 else
                 {
-                    //errors = new error_list();
-                    //errors.error_message = "There was an error when processing your request.";
-                    //errors.error_code = "E5999";
-                    //allObj.error_list.Add(errors);
-                    //allObj.process_result = false;
+                    allObj.status = false;
+                    allObj.error_Lists = new List<error_list>();
+                    allObj.error_Lists.Add(new error_list() { error_code = "401", error_message = "Not Authorized." });
+                    allObj.message = "failed";
+                    allObj.status_code = 401;
                     return allObj;
                 }
             }
@@ -93,11 +95,16 @@ namespace prabhuEticket_api.AppCode
                 //errors.error_code = "E5999";
                 //allObj.error_list.Add(errors);
                 //allObj.process_result = false;
+                allObj.status = false;
+                allObj.error_Lists = new List<error_list>();
+                allObj.error_Lists.Add(new error_list() { error_code = "401", error_message = "Not Authorized." });
+                allObj.message = "failed";
+                allObj.status_code = 401;
                 return allObj;
             }
         }
         public authenticate_output fetchLoginRows(DataRow rows)
-            {
+        {
             globFunction func = new globFunction();
             authenticate_output allObj = new authenticate_output();
             allObj.error_Lists = new List<error_list>();
@@ -138,6 +145,19 @@ namespace prabhuEticket_api.AppCode
                 allObj.data.userInfo.settings.handicapped_discoun_rate = rows["handicapped_discount_rate"].ToString();
             }
             return allObj;
+        }
+    }
+    public class AuthenticationAttribute : ActionFilterAttribute
+    {
+        CheckAPIKey CheckAPIKey = new CheckAPIKey();
+        public override void OnActionExecuting(HttpActionContext actionContext)
+        {
+            authenticate_output auth = CheckAPIKey.checkAuthentication(actionContext.Request.Headers, actionContext.Request);
+            if (auth.status_code != 0&&auth.status_code!=200)
+            {
+                actionContext.Response = actionContext.Request.CreateResponse<authenticate_output>(
+                HttpStatusCode.OK, auth);
+            }
         }
     }
 }

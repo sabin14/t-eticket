@@ -48,5 +48,8 @@ namespace prabhuEticket_api.Models
     public class returnMain
     {
         public List<error_list> error_Lists { get; set; }
+        public bool status { get; set; }
+        public int status_code { get; set; }
+        public string message { get; set; }
     }
 }
