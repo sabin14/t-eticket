@@ -53,6 +53,7 @@ namespace prabhuEticket.Models
         public string middle_name { get; set; }
         public string last_name { get; set; }
         public string email_address { get; set; }
+        public string companyID { get; set; }
         public string mobile_no { get; set; }
         public string phone_no { get; set; }
         public string pic_path { get; set; }
@@ -71,6 +72,7 @@ namespace prabhuEticket.Models
         public string mobile_no { get; set; }
         public string phone_no { get; set; }
         public string is_staff { get; set; }
+        public string companyID { get; set; }
         public string card_number { get; set; }
         public string pic_path { get; set; }
         public string doc_type { get; set; }

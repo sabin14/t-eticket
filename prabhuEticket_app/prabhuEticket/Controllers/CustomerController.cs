@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Description;
 //using prabhuEticket.AppCode;
 using prabhuEticket.AppCode;
 using prabhuEticket.Models;
@@ -43,40 +44,40 @@ namespace prabhuEticket.Controllers
     public class CustomerAPIController : ApiController
     {
         CustomerRepo repo = new CustomerRepo();
-        [Route("company/{agent_code}/customers"), HttpGet]
-        public CustomerProfile_output GetCustomer([FromUri] string agent_code)
+        [Route("customers"), HttpGet]
+        public CustomerProfile_output GetCustomer()
         {
-            CustomerProfile_output output = repo.getcustomer(company_id: agent_code);
+            CustomerProfile_output output = repo.getcustomer();
             return output;
         }
-        [Route("company/{agent_code}/customers/{customer_id}"), HttpGet]
-        public CustomerProfile_output GetCustomer([FromUri] string agent_code, [FromUri]string customer_id)
+        [Route("customers/{customer_id}"), HttpGet]
+        public CustomerProfile_output GetCustomer( [FromUri]string customer_id)
         {
-            CustomerProfile_output output = repo.getcustomer(company_id: agent_code, customer_id: customer_id);
+            CustomerProfile_output output = repo.getcustomer( customer_id: customer_id);
             return output;
         }
-        [Route("company/{agent_code}/customers/"), HttpPost]
-        public CustomerProfile_output GetCustomer([FromUri] string agent_code, [FromBody]CustomerProfile_request item)
+        [Route("customers"), HttpPost]
+        public CustomerProfile_output GetCustomer([FromBody]CustomerProfile_request item)
         {
-            CustomerProfile_output output = repo.getcustomer(company_id: agent_code, card_number: item.card_number);
+            CustomerProfile_output output = repo.getcustomer( card_number: item.card_number);
             return output;
         }
-        [Route("company/{agent_code}/customers/"), HttpPost]
-        public CustomerProfile_output registerCustomer([FromUri] string agent_code, [FromBody]customer_register item)
+        [Route("customers/"), HttpPost,ApiExplorerSettings(IgnoreApi=true),NonAction]
+        public CustomerProfile_output registerCustomer( [FromBody]customer_register item)
         {
-            CustomerProfile_output output = repo.customer_register(agent_code: agent_code, item: item);
+            CustomerProfile_output output = repo.customer_register(item: item);
             return output;
         }
-        [Route("company/{agent_code}/customers/{customer_id}"), HttpPut]
-        public CustomerProfile_output updateCustomer([FromUri] string agent_code, [FromUri]string customer_id, [FromBody]CustomerProfile_edit_request item)
+        [Route("customers/{customer_id}"), HttpPut]
+        public CustomerProfile_output updateCustomer( [FromUri]string customer_id, [FromBody]CustomerProfile_edit_request item)
         {
-            CustomerProfile_output output = repo.customer_update(agent_code: agent_code, item: item, customer_id: customer_id);
+            CustomerProfile_output output = repo.customer_update( item: item, customer_id: customer_id);
             return output;
         }
-        [Route("company/{agent_code}/customers/{customer_id}"), HttpDelete]
-        public returnMain deleteCustomer([FromUri] string agent_code, [FromUri]string customer_id, [FromBody]customer_delete item)
+        [Route("customers/{customer_id}"), HttpDelete]
+        public returnMain deleteCustomer([FromUri]string customer_id, [FromBody]customer_delete item)
         {
-            returnMain output = repo.customer_delete(agent_code: agent_code, customer_id: customer_id, item: item);
+            returnMain output = repo.customer_delete( customer_id: customer_id, item: item);
             return output;
         }
     }

@@ -69,7 +69,7 @@ namespace prabhuEticket.Repository
             }
             return allObj;
         }
-        public CustomerProfile_output customer_register(customer_register item, string agent_code)
+        public CustomerProfile_output customer_register(customer_register item, string agent_code="")
         {
             string sql = "spa_customer_detail @flag='i',@first_name=" + func.singleQuote(item.first_name) +
             ", @middle_name = " + func.singleQuote(item.middle_name) +
@@ -91,9 +91,9 @@ namespace prabhuEticket.Repository
             CustomerProfile_output output = getcustomer(dt);
             return output;
         }
-        public CustomerProfile_output customer_update(CustomerProfile_edit_request item, string agent_code, string customer_id)
+        public CustomerProfile_output customer_update(CustomerProfile_edit_request item, string agent_code="", string customer_id="")
         {
-            string sql = "spa_customer_detail @flag='i',@first_name=" + func.singleQuote(item.first_name) + ",@sno=" + func.singleQuote(customer_id) +
+            string sql = "spa_customer_detail @flag='u',@first_name=" + func.singleQuote(item.first_name) + ",@sno=" + func.singleQuote(customer_id) +
             ", @middle_name = " + func.singleQuote(item.middle_name) +
             ", @last_name = " + func.singleQuote(item.last_name) +
             ", @email_address = " + func.singleQuote(item.email_address) +
@@ -104,12 +104,14 @@ namespace prabhuEticket.Repository
             ", @doc_type = " + func.singleQuote(item.doc_type) +
             ", @doc_path = " + func.singleQuote(item.doc_path) +
             ", @user_name=" + func.singleQuote(item.update_by) +
-            ", @qr_code=" + func.singleQuote(item.qr_code);
+            ", @qr_code=" + func.singleQuote(item.qr_code)+
+            ", @type="+func.singleQuote(item.customer_type);
+
             DataTable dt = func.RunSQL(sql);
             CustomerProfile_output output = getcustomer(dt);
             return output;
         }
-        public returnMain customer_delete(customer_delete item, string agent_code, string customer_id)
+        public returnMain customer_delete(customer_delete item, string agent_code="", string customer_id="")
         {
             string sql = "spa_customer_detail @flag='u',@is_active='n',@sno=" + func.singleQuote(customer_id) + ",@card_number=" + func.singleQuote(item.card_number) +
             ", @user_name=" + func.singleQuote(item.user_name);
