@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -38,6 +39,23 @@ namespace prabhuEticket.Controllers
         public System.Web.Mvc.ActionResult CreateCustomer()
         {
             return View();
+        }
+
+        [HttpPost]
+        public System.Web.Mvc.ActionResult Create(customer_register customer, HttpPostedFileBase imgfile)
+        {
+            CustomerProfile_output output = new CustomerProfile_output();
+            CustomerRepo _repo = new CustomerRepo();
+            if (imgfile != null && imgfile.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(imgfile.FileName);
+                var path = Path.Combine(Server.MapPath("~/Image/"), fileName);
+                imgfile.SaveAs(path);
+            }
+            customer.pic_path = "Image/" + imgfile.FileName;
+            output = _repo.customer_register(customer, "2");
+            ModelState.Clear();
+            return RedirectToAction("Index");
         }
     }
     [RoutePrefix("api/v1")]
