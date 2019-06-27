@@ -1,4 +1,5 @@
-﻿
+﻿@model prabhuEticket.Models.customer_register
+
 @{
     ViewBag.Title = "CreateCustomer";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,18 +7,19 @@
 
 <h2>Create Customer</h2>
 
-<form>
+@using (Html.BeginForm("create", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
     <div class="form-group">
         <label for="name">Name</label>
         <div class="row">
             <div class="col-md-4">
-                <input type="text" class="form-control" id="fname" placeholder="First Name">
+                @Html.TextBoxFor(model => model.first_name, new { placeholder = "First Name", @class = "form-control" })
             </div>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="mname" placeholder="Middle Name">
+                @Html.TextBoxFor(model => model.middle_name, new { placeholder = "Middle Name", @class = "form-control" })
             </div>
             <div class="col-md-4">
-                <input type="text" class="form-control" id="lname" placeholder="Last Name">
+                @Html.TextBoxFor(model => model.last_name, new { placeholder = "Last Name", @class = "form-control" })
             </div>
         </div>
     </div>
@@ -25,7 +27,7 @@
         <label for="email">Email</label>
         <div class="row">
             <div class="col-md-8">
-                <input type="email" class="form-control" id="email" placeholder="Email">
+                @Html.TextBoxFor(model => model.email_address, new { placeholder = "Email", @class = "form-control" })
             </div>
         </div>
     </div>
@@ -33,7 +35,7 @@
         <label for="phone">Phone No.</label>
         <div class="row">
             <div class="col-md-4">
-                <input type="number" class="form-control" id="phone" placeholder="Phone No.">
+                @Html.TextBoxFor(model => model.phone_no, new { placeholder = "Phone No.", @class = "form-control" })
             </div>
         </div>
     </div>
@@ -41,22 +43,26 @@
         <label for="mobile">Mobile No.</label>
         <div class="row">
             <div class="col-md-4">
-                <input type="number" class="form-control" id="mobile" placeholder="Mobile No.">
+                @Html.TextBoxFor(model => model.mobile_no, new { placeholder = "Mobile No.", @class = "form-control" })
             </div>
         </div>
     </div>
 
     <div class="form-group">
         <label for="exampleFormControlFile1">Upload Profile Image</label>
-        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        <input type="file" class="form-control-file" name="imgfile">
     </div>
 
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+
         <label class="form-check-label" for="defaultCheck1">
+
+
             Is Staff ?
+
         </label>
     </div>
 
     <button type="submit" class="btn btn-primary">Create</button>
-</form>
+}
+
