@@ -8,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>@ViewBag.Title</title>
     @*derived from BundleConfig.cs*@
-    @Styles.Render("~/fonts")
-    @Styles.Render("~/css")
+    @Styles.Render("~/ui/fonts")
+    @Styles.Render("~/ui/css")
     <style>
         #buttons span:before {
             content: "\f139";
@@ -454,9 +454,9 @@
             </div>
         </div>
     </div>
-    @Scripts.Render("~/js/bootstrap")
-    @Scripts.Render("~/js/core")
-    @Scripts.Render("~/js/custom")
+    @Scripts.Render("~/ui/js")
+    @Scripts.Render("~/ui/js/core")
+    @Scripts.Render("~/ui/js/custom")
     @RenderSection("linkScripts", required: false)
     <script>
             @RenderSection("scripts", required: false)

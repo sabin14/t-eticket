@@ -8,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>@ViewBag.Title</title>
     @*derived from BundleConfig.cs*@
-    @Styles.Render("~/fonts")
-    @Styles.Render("~/css")
+    @Styles.Render("~/ui/fonts")
+    @Styles.Render("~/ui/css")
     <style>
         #buttons span:before {
             content: "\f139";
@@ -420,7 +420,7 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@Html.Raw(Session != null && Session["name"] != null ? Session["name"].ToString() : Session["user"].ToString())</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">@Html.Raw(Session != null && Session["name"] != null ? Session["name"].ToString() : (Session != null && Session["user"] != null ? Session["user"].ToString():""))</span>
                                 <img class="img-profile rounded-circle" alt="" src="@Html.Raw(Session!=null&&Session["img"]!=null?Session["img"].ToString():"")">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -490,9 +490,9 @@
             </div>
         </div>
     </div>
-    @Scripts.Render("~/js/bootstrap")
-    @Scripts.Render("~/js/core")
-    @Scripts.Render("~/js/custom")
+    @Scripts.Render("~/ui/js")
+    @Scripts.Render("~/ui/js/core")
+    @Scripts.Render("~/ui/js/custom")
     @RenderSection("linkScripts", required: false)
     <script>
             @RenderSection("scripts", required: false)

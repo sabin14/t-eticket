@@ -21,18 +21,17 @@ namespace prabhuEticket.Controllers
         }
         public ActionResult Index()
         {
-           
             return View();
         }
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         public ActionResult Index(authenticate_request request)
         {
             authenticate_output output = new authenticate_output();
             if (String.IsNullOrEmpty(request.username) == false && string.IsNullOrEmpty(request.password) == false)
             {
                 AuthenticationRepo _auth = new AuthenticationRepo();
-                output=_auth.generateToken(request);
-                if (output.status == false || output.status_code != 200)
+                output=_auth.validate_login(request,"qwertyuiop1234567890");
+                if (output.status_code != 200||output.error_Lists.Count>0)
                 {
                     ModelState.AddModelError("validationSummary",output.message);
                     ViewBag.validationSummary = output.message;

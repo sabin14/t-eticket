@@ -1,15 +1,16 @@
-﻿@model prabhuEticket.Models.customer_register
+﻿@model prabhuEticket.Models.internal_CustomerProfile_edit_request
 
 @{
-    ViewBag.Title = "CreateCustomer";
+    ViewBag.Title = "Update Customer";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Create Customer</h2>
 
-@using (Html.BeginForm("CreateCustomer", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("UpdateCustomer", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="form-group">
+        @Html.HiddenFor(model => model.customer_id)
         <div class="row">
             <div class="col-md-4">
                 @Html.LabelFor(model => model.first_name, labelText: "First Name")
@@ -48,12 +49,6 @@
         <br />
         <div class="row">
             <div class="col-md-4">
-                @Html.LabelFor(model => model.card_number, labelText: "Card Number")
-
-                @Html.TextBoxFor(model => model.card_number, new { placeholder = "Card Number", @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.card_number, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-md-4">
                 @Html.LabelFor(model => model.customer_type, labelText: "Customer Type")
                 @Html.DropDownListFor(model => model.customer_type,
                new List<SelectListItem>{ new SelectListItem {Selected=true,Text="--Select--",Value="" },
@@ -76,16 +71,6 @@
         @Html.TextBoxFor(model => model.pic_path, new { @class = "btn btn-sm", @text = "Choose File", @type = "file" })
         @Html.ValidationMessageFor(model => model.pic_path, "", new { @class = "text-danger" })
     </div>
-    <div class="form-group">
-
-        <div class="custom-control custom-checkbox small">
-            @Html.CheckBoxFor(model => model.is_staff, new { @class = "custom-control-input" })
-            <label class="custom-control-label" for="is_staff">
-                Is Staff ?
-            </label>
-        </div>
-
-    </div>
-    <button type="submit" class="btn btn-primary">Create</button>
+    <button type="submit" class="btn btn-primary">Update</button>
 }
 

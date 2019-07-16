@@ -15,7 +15,8 @@ namespace prabhuEticket.Repository
             if (dt == null)
             {
                 dt = new DataTable();
-                dt = func.RunSQL("spa_customer_detail @flag='s',@customer_id=" + func.singleQuote(customer_id) + ",@card_number=" + func.singleQuote(card_number) + ",@company_id=" + func.singleQuote(company_id));
+                string sql = "spa_customer_detail @flag='s',@customer_id=" + func.singleQuote(customer_id) + ",@card_number=" + func.singleQuote(card_number) + ",@company_id=" + func.singleQuote(company_id);
+                dt = func.RunSQL(sql);
             }
             CustomerProfile_output allObj = new CustomerProfile_output();
             allObj.error_Lists = new List<error_list>();
@@ -55,15 +56,18 @@ namespace prabhuEticket.Repository
                     customer.card_detail.initial_balance = rows["initial_balance"].ToString();
                     customer.card_detail.credit_limit = rows["credit_limit"].ToString();
                     allObj.data.Add(customer);
+                    allObj.status_code = 200;
+                    allObj.status = true;
                 }
                 else
                 {
                     error_list error_List = new error_list();
                     error_List.error_code = rows["code"].ToString();
                     error_List.error_message = rows["message"].ToString();
+                    error_List.error_field = rows.Table.Columns.Contains("field") ? rows["field"].ToString() : null;
                     allObj.error_Lists.Add(error_List);
-                    allObj.status_code = 200;
-                    allObj.status = true;
+                    allObj.status_code = 401;
+                    allObj.status = false;
                     allObj.message = "failed";
                 }
             }
@@ -77,7 +81,7 @@ namespace prabhuEticket.Repository
             ", @email_address = " + func.singleQuote(item.email_address) +
             ", @mobile_no = " + func.singleQuote(item.mobile_no) +
             ", @phone_no = " + func.singleQuote(item.phone_no) +
-            ", @is_staff = " + func.singleQuote(item.is_staff) +
+            ", @is_staff = " + func.singleQuote(item.is_staff?"y":"n") +
             ", @card_number = " + func.singleQuote(item.card_number) +
             ", @company_id = " + func.singleQuote(agent_code) +
             ", @pic_path = " + func.singleQuote(item.pic_path) +

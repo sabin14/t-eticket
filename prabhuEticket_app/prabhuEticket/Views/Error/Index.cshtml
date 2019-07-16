@@ -1,7 +1,7 @@
 ﻿@model System.Web.Mvc.HandleErrorInfo
-    @{
-        Layout = "";
-    }
+@{
+    Layout = "";
+}
 <html lang="en">
 <head>
 
@@ -35,8 +35,8 @@
 
                     <!-- 404 Error Text -->
                     <div class="text-center">
-                        <div class="error mx-auto" data-text="404">404</div>
-                        <p class="lead text-gray-800 mb-5">Page Not Found</p>
+                        <div class="error mx-auto" data-text="@ViewBag.response_code">@ViewBag.response_code</div>
+                        <p class="lead text-gray-800 mb-5">@ViewBag.exception</p>
                         <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
                     </div>
 
@@ -59,7 +59,7 @@
         <!-- End of Content Wrapper -->
 
     </div>
-    
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

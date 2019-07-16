@@ -27,8 +27,8 @@
                         </div>
                     }*@
                 <div class="input-group" id="cardNum_div">
-                    @Html.EditorFor(model => model.cardNumber, new { htmlAttributes = new { @class = "form-control form-control-user", @type = "text", @placeholder = "Please enter Card Number.." } })
-                    @Html.ValidationMessageFor(model => model.cardNumber, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.card_number, new { htmlAttributes = new { @class = "form-control form-control-user", @type = "text", @placeholder = "Please enter Card Number.." } })
+                    @Html.ValidationMessageFor(model => model.card_number, "", new { @class = "text-danger" })
                     <div class="input-group-append">
                         <button class="btn btn-primary" onclick="submit()" type="button">
                             <i class="fas fa-search fa-sm"></i>
@@ -98,7 +98,7 @@
         });*@
     function submit()
     {
-    var cardNum=$('#cardNumber').val();
+    var cardNum=$('#card_number').val();
     if(cardNum.trim()==undefined||cardNum.trim()=="")
     {
     $("span[data-valmsg-for='cardNum_div']").html("Card Number is required");
@@ -107,7 +107,7 @@
     var request = $.ajax({
     url: "/customer/index",
     method: "POST",
-    data: { cardNumber : cardNum },
+    data: { card_number : cardNum },
     dataType: "JSON"
     });
 
@@ -116,19 +116,20 @@
         console.log(msg);*@
     if(msg.status==false||msg.status_code!=200)
     {
-    $("span[data-valmsg-for='cardNum_div']").html(msg.message);
+    $("span[data-valmsg-for='cardNum_div']").html(msg.error_Lists[0].error_message);
     $('#example').attr("hidden","hidden")
     }
     else
     {
     $("span[data-valmsg-for='cardNum_div']").html("");
     $('#example').removeAttr('hidden');
-    $('#card_no').html(msg.data.customerDetail.card_detail.card_number);
-    $('#full_name').html(msg.data.customerDetail.fullName);
-    $('#email').html(msg.data.customerDetail.email);
-    $('#mobile').html(msg.data.customerDetail.mobile);
-    $('#isStaff').html(msg.data.customerDetail.isSatff);
-    $('#created_at').html(msg.data.customerDetail.created);
+    $('#card_no').html(msg.data[0].card_detail.card_number);
+    $('#full_name').html(msg.data[0].fullName);
+    $('#email').html(msg.data[0].email);
+    $('#mobile').html(msg.data[0].mobile);
+    $('#isStaff').html(msg.data[0].isSatff);
+    $('#created_at').html(msg.data[0].create_ts);
+    $('#edit').attr('href','/Customer/UpdateCustomer/'+msg.data[0].id )
     //$('#action').html('');
     }
     });

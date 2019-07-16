@@ -9,8 +9,10 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -142,6 +144,8 @@ namespace prabhuEticket.AppCode
                 else
                 {
                     str = str.Replace("'", "''");
+                    Regex regex = new Regex("<(?<tagName>[^>]+)>");
+                    str = regex.Replace(str, "");
                     return "'" + str + "'";
                 }
             }
@@ -392,6 +396,30 @@ namespace prabhuEticket.AppCode
             doc.LoadXml(xml);
             string jsonText = Newtonsoft.Json.JsonConvert.SerializeXmlNode(doc);
             return jsonText;
+        }
+        public static T Cast<T>(Object myobj)
+        {
+            Type objectType = myobj.GetType();
+            Type target = typeof(T);
+            var x = Activator.CreateInstance(target, false);
+            var z = from source in objectType.GetMembers().ToList()
+                    where source.MemberType == MemberTypes.Property
+                    select source;
+            var d = from source in target.GetMembers().ToList()
+                    where source.MemberType == MemberTypes.Property
+                    select source;
+            List<MemberInfo> members = d.Where(memberInfo => d.Select(c => c.Name)
+               .ToList().Contains(memberInfo.Name)).ToList();
+            PropertyInfo propertyInfo;
+            object value;
+            foreach (var memberInfo in members)
+            {
+                propertyInfo = typeof(T).GetProperty(memberInfo.Name);
+                value = myobj.GetType().GetProperty(memberInfo.Name).GetValue(myobj, null);
+
+                propertyInfo.SetValue(x, value, null);
+            }
+            return (T)x;
         }
     }
 }
